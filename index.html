@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>GEOMETRY</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#000000">
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/92/three.min.js"></script>
+        <script src="orbitControls.js"></script>
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <div id="menu">
+            <select id="type">
+                <option value="prism">graniastosłup</option>
+                <option value="pyramid">ostrosłup</option>
+            </select>
+            <input id="base" min="3" max="24" value="4" type="number">
+        </div>
+        <button id="show">HIDE</button>
+    </body>
+</html>
