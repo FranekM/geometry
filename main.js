@@ -30,23 +30,45 @@ $(document).ready(() => {
 
     })
 
+    var height = $('#height').val()
+    var gons = $('#base').val()
+    var type = $('#type').val() == 'prism'
     var line, mesh
     var mat = new THREE.MeshBasicMaterial({
         color: 0x00aaff,
         transparent: true,
-        opacity: 0.5
+        opacity: 0.3
     })
-    var mat2 = new THREE.LineBasicMaterial({color: 0x000088})
+    var lmat = new THREE.LineBasicMaterial({
+        color: 0x0000ff
+    })
+
+    $('#height').on('input', (e) => {
+        height = $('#height').val()
+        create()
+    })
 
     $('#base').on('input', (e) => {
-        scene.remove(mesh, line)
-        var geom = new THREE.CylinderBufferGeometry(50, 50, 100, e.target.value)
-        var edges = new THREE.EdgesGeometry(geom)
-        line = new THREE.LineSegments(edges, mat2)
-        var geom2 = new THREE.CylinderBufferGeometry(49.9, 49.9, 99.9, e.target.value)
-        mesh = new THREE.Mesh(geom2, mat)
-        scene.add(mesh, line)
+        gons = $(e.target).val()
+        create()
     })
+
+    $('#type').on('change', (e) => {
+        type = $(e.target).val() == 'prism'
+        create()
+    })
+
+    function create() {
+        scene.remove(mesh, line)
+        var geom = new THREE.CylinderBufferGeometry(type ? 50 : 0, 50, height, gons)
+        var edges = new THREE.EdgesGeometry(geom)
+        line = new THREE.LineSegments(edges, lmat)
+        var geom = new THREE.CylinderBufferGeometry(type ? 49.9 : 0, 49.9, height-0.1, gons)
+        mesh = new THREE.Mesh(geom, mat)
+        scene.add(mesh, line)
+    }
+
+    create()
 
     function render() {
         controls.update()
