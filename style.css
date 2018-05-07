@@ -20,7 +20,9 @@ canvas {
     background: rgba(255, 255, 255, 0.4);
 }
 
-input, select {
+input[type="range"], 
+input[type="number"],
+select {
     box-sizing: border-box;
     display: block;
     width: 150px;
@@ -29,6 +31,11 @@ input, select {
     background: #000000;
     border: none;
     color: #a0a0a0;
+}
+
+label {
+    display: block;
+    width: 150px;
 }
 
 #show {
